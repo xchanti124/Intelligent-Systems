@@ -1,0 +1,30 @@
+assignment2.txt
+2824004
+[0, 4, 8, 12, 16]
+[3, 7, 11, 15, 19]
+17
+The first, most apparent difference is that BFS uses a double ended queue (deque) in order
+to have the first-in-first-out system of investigating and adding nodes to the fringe. In DFS, a stack is used
+to have the last-in-first-out system of investigating and adding nodes to the fringe. This difference can also be
+seen when we use .popleft() to remove the node that is at the beginning of the queue in BFS from the fringe in order
+to investigate, compared to .pop() method, which removes the top-most element of a stack (which is the element which was
+added last) from the fringe for investigation
+[18, 17, 8]
+[16, 9, 5]
+ Changing the order of the cards in my hand does not impact the running time significantly and does
+not impact the amount of nodes explored at all. I tested this changing the order of the cards in the custom made hands
+that I have defined and as I have found, the running time for DFS is not significantly impacted when the order of the cards
+in my hands are changed. The number of explored nodes does not change at all, it always stays 17 no matter which order the cards
+are in.
+As for b, the search method chosen, the running time as well as number of nodes that are explored is significantly influenced.
+When using DFS, the running time is on average around 6000 microseconds (excluding outliers) and for custom hands (can be seen under
+customLeftHand and customRightHand) the amount of nodes explored is 17. When using BFS, the running time is on average around 21000
+microseconds and explores 68 nodes. Therefore, using my custom made hands, BFS has a longer running time and explores more nodes than
+DFS does. (Note: Changing the order of the cards did not show an effect on either BFS nor DFS running time/ number of explored nodes
+during my testing, meaning that the combination of a) and b) also results in no since only b) showed to influence those metrics.)
+#
+BFS will (in the case of no loops) end up exploring significantly more nodes than DFS, which is one 
+reason for why the running time is longer than that of DFS. Moreover, DFS will find solutions that are deeper in the tree
+quicker since it explores depth over breadth. BFS does always find a solution (and even the most optimal one), however, 
+as long as there are no loops that DFS could get stuck in, the running time will be longer for BFS since it explores
+breadth over depth.
