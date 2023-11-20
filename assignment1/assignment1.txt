@@ -1,0 +1,62 @@
+assignment1.txt
+2824004
+
+In order to represent the given graph in a dictionary, I chose to use
+the following datastructure: adjacency list.
+
+Dictionaries have keys corresponding values. 
+In an adjacency list, each key represents a vertex which then has a value 
+mapped to it, specifically a list of directly neighboring vertices.
+For example, looking at the graph, the vertex 'b' has 3 directly neighboring
+vertices, 'a', 'c', and 'd'. In an adjacency list this would therefore mean that 
+the key 'b' is mapped to the value ['a', 'c', 'd']
+
+
+In order to create an adjacency matrix I first initialized the variable num_vertices to
+6 since there are a total of 6 nodes in the graph that I want to represent. Then I created 
+a list of lists (my matrix) that is 6x6 (num_vertices) large with only zeroes, since it will serve as the 
+initial state of no connections between nodes being expressed yet. This empty matrix will be used to represent
+the graph and is therefore also initialized to adjacency_matrix.
+
+I then created an empty dictionary (vertix_map) which will store the vertices alphabetically as keys and numerically
+as each corresponding value to its key.
+
+Then, using a nested for loop, I first iterate through every item in the adjacency list and store the vertices (a, b, c,...)
+in the variable vertex_int which I get using the vertex_map dictionary. Basically, each alphabetic vertex has an integer 
+mapped to it in vertex_map, and during vertex_int = vertex_map[vertex] the integer of each alphabetic vertex will be stored
+in that variable.
+For each iteration of that process, a second for loop is called which iterates over the list of neighbors (obtained from first for loop) 
+of each vertex and then updates the adjacency_matrix for each neighbor and its connecting vertex. So whenever there is a connection,
+the 0 from the initial state of the matrix will be turned into a 1 to represent a connection.
+
+My result is more easily visualized using the following annotation:
+#    a  b  c  d  e  f
+# a [0, 1, 0, 0, 0, 0]
+# b [1, 0, 1, 1, 0, 0]
+# c [0, 1, 0, 1, 1, 1]
+# d [0, 1, 1, 0, 0, 0]
+# e [0, 0, 1, 0, 0, 0]
+# f [0, 0, 1, 0, 0, 0]
+
+So now we can see that, indeed, 'b' has a connection with 'a', 'c', and 'd'
+
+
+The _search() method allows us to search for a specific value ('v') in a binary tree by using recursion. Starting from the search() method,
+we check whether the tree is empty, in which case we just return None since there is nothing to search for in an empty tree. If the tree is
+not empty however, we call the ._search() method on self with the root node passed in as our starting point. 
+At that point, we are at the _search() function and simply compare whether the value of our current node (in the first round this will 
+be the root node) is equal to the value that we got passed in, in which case we return that value including a message.
+
+However, if that is not the case, we move on to the next checks. The first check makes sure that the left child of the current node is present
+and if it is, it adds the check of whether the current value is larger than the value that we are searching for. If this statement evaluates to
+True then we call the ._search() function again but updating our current node to be the left child of the past node we checked (this is the 
+recursive part since the functions calls itself).
+
+If those checks did not pass however, we check for the scenario in which there is a child to the right of the current node and the value that is being
+searched for is smaller than or equal to the current node's value. In that case, we call the ._search() function again but update our current node 
+to be the right child of the node we looked at originally.
+
+This algorithm will either continue until it finds a solution and returns it or it will reach a leaf node (node without children), in which case the value
+we are searching for is not part of the tree and therefore return None.
+
+
