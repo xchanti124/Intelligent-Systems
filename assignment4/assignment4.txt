@@ -1,0 +1,40 @@
+assignment4.txt
+
+1. rdeep vs. rand: rdeep won
+2. rdeep vs. bully: rdeep won
+
+
+"Played 30 out of 30 games (100%): {'randbot': 9, 'bullybot': 12, 'rdeepbot': 26}"
+
+This was the last line of the output I got for playing the three-player tournament including rdeep, rand and bully.
+The output shows that all the games have been played (30 rounds) and that rdeepbot got the highest points with 26 points.
+Meanwhile randbot managed to get 9 points, and bullybot 12.
+
+
+This bot uses (as the name suggests) a more assertive, aggressive ("bully"-way) of playing.
+The reason for that is because it plays the trump cards first, "attacking" as much as possible from
+the very beginning. 
+As shown in the code for the bot, it first tries to play any trump cards it has, then it also tries to
+"follow the lead" of the leader (player who first plays in a trick) and if neither conditions are met, the 
+bot will look for the highest scoring card in general regardless of the first two conditions and play that.
+
+
+I think the best way to prove that one bot would be better than the other (in this case rdeep being better than rand)
+I would suggest systematically creating test-games under controlled setting (equal amount of times in terms of who starts
+as leader for example) where confounding variables could be controlled. 
+If the tests are extensive enough, they could show a clear causation in terms of which bot causes the wins and which one causes
+the loss against that bot.
+
+
+Please also write your code, as well as the results here.
+- My bot alternates between picking the first and the last available move. 
+- It is a naive strategy since it does not consider the current state of the deck
+  nor the potential best moves
+
+Result of one tournament:
+"Played 10 out of 10 games (100%): {'randbot': 8, 'mybot': 11}"
+
+- This is a naive and simple strategy to implement a bot, however, against randbot it still stands a chance
+  of winning as well.
+
+
