@@ -1,0 +1,36 @@
+assignment5.txt
+
+The most important reason is that during Phase 1 of a Schnapsen game, there is imperfect information, whereas in phase 2 of the game 
+we do have perfect information. Since in phase 1, none of the cards are yet visible, the number of possibilites is so high that
+it is not possible to apply the minimax algorithm to it due to its complexity (time complexity) arising from all of the different 
+possibilities. In phase 2 there also are a lot of possibilities, however, substantially less than in phase 1 so that the minimax algorithm
+can be successfully applied to it.
+
+
+Since our implementation is limiting the use of the minimax bot implementation to phase 2, I don't think that heuristics would be 
+necessary since the number of possibilities, and therefore the complexity of the possibilities (I like to imagine it as a tree
+representation) are less than for phase 1. Therefore I think that the use of heuristics is not necessary in a minimax implementation
+like this one.
+
+
+
+Note: The code in brackets was provided whereas everything outside of brackets is my own code that I wrote to replace the ???.
+
+(if maximizing and) best_value < value(:)  (# we are in the Maximize part of the algorithm)
+    best_value = value
+    best_move = move
+
+(elif not maximizing and) best_value > value(:)  (# we are in the Minimize part of the algorithm)
+    best_value = value
+    best_move = move
+
+
+
+Note: The "???" in the alphabeta.py file were on lines 116 and 125 instead of lines 113 and 122, which is why I am 
+referrring to code I filled in on those lines instead of the ones specified in the task description.
+The code in brackets was provided whereas everything outside of brackets is my own code that I wrote to replace the ???.
+
+line 116: (if) alpha >= beta(:)
+
+line 125: (if) beta <= alpha(:)
+
