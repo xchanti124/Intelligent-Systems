@@ -1,0 +1,19 @@
+assignment3.txt
+2824004
+[16, 9, 5, 18, 17]
+[8, 1, 14, 19, 11]
+
+The most apparent difference is the amount of nodes generated in DFS, BFS and Greedy Best First Search. DFS generated 11 nodes, 
+BFS generated 69 nodes and Greedy Best First Search generated 7 nodes. This means that Greedy Best First Search generated the
+least amount of nodes, meaning it checked less nodes until it found the goal state compared to BFS and DFS. This is due to 
+Greedy Best First Search using heuristics which allows for an informed search to take place compared to the uninformed searches
+happening in DFS and BFS.
+
+
+Since A star search combines the use of heuristics with the cost of reaching the goal from the current node it is at,
+A star search is less expensive and more optimal since it will always find the least expensive way to get to the goal state,
+whereas Greedy Best First Search takes the first path to the goal it can find, which in turn, leads to an unoptimal solution.
+This can also be seen by the fact that Greedy Best First Search only explored 6 paths until it stops whereas A star explored 
+26 paths, which is also the reason for why A star was able to find a path with the cost of only 61 compared to the path cost
+of 149 that the path generated through Greedy Best First search.
+
