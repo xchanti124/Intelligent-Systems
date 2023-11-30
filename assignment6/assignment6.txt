@@ -1,0 +1,15 @@
+assignment6.txt
+
+The output: "{A: False, B: True, C: True}
+{A: True, B: True, C: True}
+True" means that the algorithm found two models of the knowledge base and since it was able to find models in the first place
+it prints true since a knowledge base is satisfiable if there is at least one model.
+
+
+It means that A, C, and D need to always be true in the models, meaning that there are two possible models
+since B can be either true or false but the rest have to be true.
+
+
+I have taken the knowledge base and negated all of it and the output now shows that A, C, D are all false for any model
+which is how we can show the entailment of A or C or D by refutation (by negating everything and sat solving after that).
+
