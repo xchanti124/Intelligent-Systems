@@ -1,0 +1,25 @@
+assignment7.txt
+
+g.add((s.TenHearts, RDF.type, s.Hearts))
+g.add((s.TenHearts, RDF.type, s.Ten))
+g.add((s.TenHearts, s.value, Literal('10')))
+
+g.add((s.TenSpades, RDF.type, s.Spades))
+g.add((s.TenSpades, RDF.type, s.Ten))
+g.add((s.TenSpades, s.value, Literal('10')))
+
+g.add((s.TenDiamonds, RDF.type, s.Diamonds))
+g.add((s.TenDiamonds, RDF.type, s.Ten))
+g.add((s.TenDiamonds, s.value, Literal('10')))
+
+g.add((s.TenClubs, RDF.type, s.Clubs))
+g.add((s.TenClubs, RDF.type, s.Ten))
+g.add((s.TenClubs, s.value, Literal('10')))
+
+
+RDF-S entailment basically can do the same thing as SPARQL by using a library (owlrl) to calculate the 
+closure graph. So I see RDF-S entailment as an expansion of SPARQL because it can everything and more, namely
+it can spot additional triples that are implied but not explicitly stated. This is why the set of results is
+different, since SPARQL only includes triples that are explicitly stated in our graph while RDF-S checks for
+logical implication on top of explit statement.
+
