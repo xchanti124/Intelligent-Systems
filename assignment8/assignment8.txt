@@ -1,0 +1,30 @@
+assignment8.txt
+def computeJPD(l,d,b,randomCards):
+    total_matches: int = 0
+
+    for card in randomCards:
+        # if (card[1], card[2], card[3]) == (l, d, b):
+        if card[1] == l and card[2] == d and card[3] == b:
+            total_matches += 1 
+    
+    joint_probability: float = total_matches / len(randomCards)
+
+    print(joint_probability)
+    return(joint_probability)
+
+def bayes_theorem(p_a, p_b, p_ba):
+    #please compute p_ab
+    p_ab = (p_ba * p_a) / p_b
+    
+    print(p_ab)
+    return(p_ab)
+
+
+In the code cell above we needed to calculate the conditional probability P(B | L), which means we want to know the probability of having a BlackWedding (B) card
+given that it is a LowCard (L).
+For this, we can use a version of Baye's Theorem, namely calculating P(B | L) using the following formula: P(A|B) = (P(B,A)) / P(B), where P(A|B) = P(B|L), P(A) = P(B) and P(B) = P(L).
+In this case, P(B, L) refers to the joint probability of B AND L being true. P(L) refers to the probability of the card being a LowCard (regardless of any other specifiers, like suit or
+similar). This means that to calculate P(L) we need to sum up the joint probabilities of all the scenarios in which L is true regardless of any suit or color. That is why we have 
+p_l being the sum of the JPD of the scenarios in which it will be true. Then P(L, B) will simply be the JPD when B is true and L is true. If we divide them, as specified in the
+theorem, we have a calculation of P(B | L).
+
