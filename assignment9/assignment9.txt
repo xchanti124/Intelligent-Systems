@@ -1,0 +1,61 @@
+assignment9.txt
+
+probability = ((u - d) / u * (u - d - 1) / (u - 1) * (u - d - 2) / (u - 2) * (u - d - 3) / (u - 3) * (u - d - 4) / (u - 4))
+
+
+max_probability = probability
+chosen_move = move
+
+
+utility_heuristics = probability / points
+
+
+Tournament: RdeepBot vs ProbabilityRandBot: 
+    - output: ('RdeepBot', 2, Score(direct_points=69, pending_points=0))
+    - description: RdeepBot beats ProbabilityRandBot
+Tournament 2: 
+
+
+Tournament 1: Randbot vs ProbabilityUtilityRandbot
+    - Output: ('ProbabilityUtilityRandBot', 2, Score(direct_points=66, pending_points=0))
+    - Description: ProbabilityUtilityRandbot won against Randbot
+Tournament 2: RdeepBot vs ProbabilityUtilityRandbot
+    - Output: ('RdeepBot', 2, Score(direct_points=69, pending_points=0))
+    - Description: ProbabilityUtilityRandbot lost against RdeepBot (just like the other ProbabilityRandbot)
+
+
+My initial approach was to think of why ProbabilityUtilityRandbot was so underperforming and then take that and change it a little bit.
+In the first phase, ProbabilityUtilityRandbot plays cards with the highest probability of not being beaten by the opponent. In the
+second phase it just plays completely randomly. This strategy does not take into account any cards that have been played so far and
+is therefore very naive.
+
+So my idea was to look into having weighted probabilities and incorporating cards that have been played before so that the improved 
+ProbabilityUtilityRandbot will be able to take into account the cards played so far. I did some research on how weighting functions work
+and then incorporated a simple weight function that works simply by inversing the scores of the function, so that the most valuable
+cards won't be played first blindly.
+And this also makes sense when we would play Schnapsen, since we usually hold onto the most valuable cards for longer than the ones that aren't.
+
+This bot (NewProbabilityUtilityRandbot) wins against the normal ProbabilityUtilityRandbot, against the ProbabilityRandbot, and against
+Randbot, which shows a slight improvement, however, it does not manage to beat rdeepbot. 
+A suggestion that might be worth considering would be to change up the way that ProbabilityUtilityRandbot
+plays in Phase 2 from completely playing randomly to playing with a specific strategy.
+
+Tournament 1: NewProbabilityUtilityRandbot vs ProbabilityUtilityRandbot
+    - Output: ('NewProbabilityUtilityBot', 1, Score(direct_points=61, pending_points=0))
+Tournament 2: NewProbabilityUtilityRandbot vs ProbabilityRandbot
+    - Output: ('NewProbabilityUtilityBot', 1, Score(direct_points=61, pending_points=0))
+Tournament 3: NewProbabilityUtilityRandbot vs Randbot: 
+    - Output: ('NewProbabilityUtilityBot', 2, Score(direct_points=68, pending_points=0))
+Tournament 4: NewProbabilityUtilityRandbot vs RdeepBot: 
+    - Output: ('RdeepBot', 2, Score(direct_points=76, pending_points=0))
+
+The code I added is here (it's right below the "dangerous_cards" definition):
+weighted_dangerous_cards = 0
+# We extract the scores into a variable for readability
+scores = perspective.get_engine().trick_scorer.SCORES
+for card in unseen_cards:
+    if (card.suit == move.card.suit) and (scores[card.rank] > scores[move.card.rank]):
+        # Here, we calculate the weight by taking the inverse of the scores
+        weight = 1 / scores[card.rank]
+        weighted_dangerous_cards += weight
+
