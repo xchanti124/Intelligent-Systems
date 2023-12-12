@@ -1,0 +1,60 @@
+assignment10.txt
+
+The output states that ham has a percentage of 86.59 percent whereas spam has a percentage of 13.41 percent.
+This means that in our dataset there is quite an unbalance going on between ham and spam class.
+
+
+As stated in the documentation, I first used the more common evaluation metrics: precision, recall and f1. 
+- Precision output: 1.0 (measure of accuracy of positive predictions) --> 100%
+- Recall output: 0.21 (measure of proportion of actual positives that were identified correctly) --> ~21%
+- F1 output: 0.04 (measures harmonic mean between precision and recall) --> ~4%
+- Jaccard output: 0.02 (defined as size of intersection divided by the size of the union of two label sets) --> ~2%
+
+
+During our intro to ai course, I was doing research on the SVM model (Support Vector Machine Model) and therefore wanted
+to look into it a little bit more to test whether it would perform better than the Naive Bayes model. I then went on
+to research how to use an SVM model with sklearn and ended up on this website initially https://scikit-learn.org/stable/modules/svm.html. 
+After reading about SVM on that website, I knew that theoretically, the SVM model would perform better than Naive Bayes
+model, especially since the SVM model can take the parameter 'class_weight' and if set to 'balanced' (which is what I did),
+it would be very beneficial since the dataset we are using is very unbalanced.
+
+After doing the initial research and gathering the theoretical knowledge, I followed the guides on sklearn's documentation
+as well as the information from the following website: https://www.milindsoorya.com/blog/build-a-spam-classifier-in-python
+to gather more insight on how to train and implement an SVM model. Once I understood how to do so, I initialized the 
+SVM classifier model, trained it, and used the same metrics I used for analyzing the Naive Bayes model, for my SVM model.
+
+Now we can directly compare the performances using the output from the classification_report() function as well as the
+Jaccard Scores and the accuracy scores, we get the following results:
+
+Naive Bayes Accuracy: 0.8693918245264207
+Naive Bayes Jaccard Score: 0.02092675635276532
+Naive Bayes Classification Report:
+               precision    recall  f1-score   support
+
+         ham       0.87      1.00      0.93      4346
+        spam       1.00      0.02      0.04       669
+
+    accuracy                           0.87      5015
+   macro avg       0.93      0.51      0.49      5015
+weighted avg       0.89      0.87      0.81      5015
+
+
+SVM Accuracy: 0.9647058823529412
+SVM Jaccard Score: 0.7416058394160584
+SVM Classification Report:
+               precision    recall  f1-score   support
+
+         ham       0.96      1.00      0.98      4346
+        spam       0.97      0.76      0.85       669
+
+    accuracy                           0.96      5015
+   macro avg       0.97      0.88      0.92      5015
+weighted avg       0.96      0.96      0.96      5015
+
+As we can see, my SVM model improved the performance by a significant amount. In particular, if we start the analysis
+at the accuracy score, we can see that Naive Bayes Accuracy score is at 86.94% approximately, while the SVM Accuracy
+score is at 96.47% approximately. This is an improvement of more than 5%. Moving on to the Jaccard score (using spam as
+the label), we had a score of approximately 2% using the Naive Bayes model, which is very low compared to the Jaccard
+score of my SVM model, which is at approximately 74%, resulting in a huge difference.
+As for the other metrics, we can see that almost every metric is improved upon very significantly.
+
