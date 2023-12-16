@@ -1,0 +1,80 @@
+assignment11.txt
+
+    player_game_state_representation = get_state_feature_vector(perspective)
+    leader_move_representation = get_move_feature_vector(leader_move)
+    follower_move_representation = get_move_feature_vector(follower_move)
+
+
+bot1 = RandBot(random.Random(42), "RandBot")
+bot2 = RandBot(random.Random(42), "RandBot")
+
+
+The explanation on what the numbers before and after || mean can be found in the function 'notify_game_end'. On the
+right side of the ||, there is either only one 0 or 1, indicating whether the game was lost (0) or won(1). On the left
+side of the ||, all the information about the game state is stored in the form of a vector (since the function 'create_state_and_actions_vector_representation')
+is called. 
+
+
+(1) The train_model function takes as argument the model type, which can be 'NN' for neural network or "LR' for logistic 
+regression. 
+(2) The main difference is that choosing NN will train the model like a neural-network, whereas choosing LR will train a
+logistic regression model. Neural network models are usually complexer and more powerful than logistic regression models.
+
+
+bot1 = MLPlayingBot(model_location=model_location, name="MLBot")
+bot2 = RandBot(random.Random(42), name="RandBot")
+
+
+(From Assignment 4)
+myrepeats = 4
+
+# Create bots.
+bot1 = MLPlayingBot(model_location=model_location, name="MLBot")
+bot2 = RandBot(rand=random.Random(42), name="randbot")
+bot3 = RdeepBot(5, 5, rand=random.Random(44), name="rdeepbot")
+
+bots = [bot1, bot2, bot3]
+
+n = len(bots)
+wins = {str(bot): 0 for bot in bots}
+matches = [(p1, p2) for p1 in range(n) for p2 in range(n) if p1 < p2]
+
+totalgames = (n * n - n) / 2 * myrepeats
+playedgames = 0
+
+print("Playing {} games:".format(int(totalgames)))
+for a, b in matches:
+    for r in range(myrepeats):
+        if random.choice([True, False]):
+            p = [a, b]
+        else:
+            p = [b, a]
+
+        winner_id, game_points, score = engine.play_game(
+            bots[p[0]], bots[p[1]], random.Random(45)
+        )
+
+        wins[str(winner_id)] += game_points
+
+        playedgames += 1
+        print(
+            "Played {} out of {:.0f} games ({:.0f}%): {} ".format(
+                playedgames, totalgames, playedgames / float(totalgames) * 100, wins
+            )
+        )
+
+
+Playing 12 games:
+Played 1 out of 12 games (8%): {'MLBot': 3, 'randbot': 0, 'rdeepbot': 0} 
+Played 2 out of 12 games (17%): {'MLBot': 5, 'randbot': 0, 'rdeepbot': 0} 
+Played 3 out of 12 games (25%): {'MLBot': 8, 'randbot': 0, 'rdeepbot': 0} 
+Played 4 out of 12 games (33%): {'MLBot': 11, 'randbot': 0, 'rdeepbot': 0} 
+Played 5 out of 12 games (42%): {'MLBot': 11, 'randbot': 0, 'rdeepbot': 3} 
+Played 6 out of 12 games (50%): {'MLBot': 12, 'randbot': 0, 'rdeepbot': 3} 
+Played 7 out of 12 games (58%): {'MLBot': 12, 'randbot': 0, 'rdeepbot': 5} 
+Played 8 out of 12 games (67%): {'MLBot': 14, 'randbot': 0, 'rdeepbot': 5} 
+Played 9 out of 12 games (75%): {'MLBot': 14, 'randbot': 0, 'rdeepbot': 8} 
+Played 10 out of 12 games (83%): {'MLBot': 14, 'randbot': 0, 'rdeepbot': 11} 
+Played 11 out of 12 games (92%): {'MLBot': 14, 'randbot': 0, 'rdeepbot': 12} 
+Played 12 out of 12 games (100%): {'MLBot': 14, 'randbot': 0, 'rdeepbot': 14} 
+
